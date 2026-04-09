@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
+import java.util.LinkedHashSet; // New import for UC5
 
 /**
  * MAIN CLASS - TrainApp
@@ -12,6 +13,7 @@ import java.util.TreeSet;
  * Use Case 2: Add Passenger Bogies to Train
  * Use Case 3: Track Unique Bogie IDs (Set - HashSet)
  * Use Case 4: Maintain Ordered Bogie IDs (TreeSet & SortedSet)
+ * Use Case 5: Preserve Insertion Order of Bogies (LinkedHashSet)
  */
 public class TrainApp {
 
@@ -79,20 +81,44 @@ public class TrainApp {
         System.out.println("\nAdding Bogie IDs out of order...");
         System.out.println("BOG-104, BOG-101, BOG-105, BOG-102");
 
-        // Create a SortedSet to maintain natural ordering
         SortedSet<String> sortedBogieIds = new TreeSet<>();
 
-        // Add bogie IDs out of order
         sortedBogieIds.add("BOG-104");
         sortedBogieIds.add("BOG-101");
         sortedBogieIds.add("BOG-105");
         sortedBogieIds.add("BOG-102");
 
-        // Display the sorted set - notice how it prints in order!
         System.out.println("\nSorted Bogie IDs (TreeSet) : " + sortedBogieIds);
 
-        // Fetch the first (lowest) and last (highest) IDs
         System.out.println("\nFirst Bogie ID : " + sortedBogieIds.first());
         System.out.println("Last Bogie ID : " + sortedBogieIds.last());
+
+
+        // ==========================================
+        // USE CASE 5: PRESERVE INSERTION ORDER
+        // ==========================================
+
+        System.out.println("\n--- UC5: Preserve Insertion Order of Bogies ---");
+        System.out.println("Adding bogies (Engine, Sleeper, AC Chair, Cargo)...");
+
+        // Create a LinkedHashSet to maintain insertion order
+        Set<String> linkedBogies = new LinkedHashSet<>();
+
+        // Add bogies in a specific physical order
+        linkedBogies.add("Engine");
+        linkedBogies.add("Sleeper");
+        linkedBogies.add("AC Chair");
+        linkedBogies.add("Cargo");
+
+        // Display the consist - notice how Engine stays first!
+        System.out.println("\nTrain Consist (Insertion Order) :");
+        System.out.println(linkedBogies);
+
+        System.out.println("\nNote: Attempted to add duplicate Engine. Order remains unchanged.");
+
+        // Attempting to add a duplicate to prove it's rejected
+        linkedBogies.add("Engine");
+
+        System.out.println("\nAll items processed in order.");
     }
 }
