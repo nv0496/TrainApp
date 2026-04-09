@@ -1,11 +1,14 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * MAIN CLASS - TrainApp
  * ------------------------------------------------
  * Use Case 1: Initialize Train and Display Consist Summary
  * Use Case 2: Add Passenger Bogies to Train
+ * Use Case 3: Track Unique Bogie IDs (Set - HashSet)
  */
 public class TrainApp {
 
@@ -14,27 +17,16 @@ public class TrainApp {
         // USE CASE 1: INITIALIZE TRAIN
         // ==========================================
 
-        // Display welcome banner
         System.out.println("=========================================");
         System.out.println("   === Train Consist Management App ===  ");
         System.out.println("=========================================");
 
-        // Create a dynamic list to store train bogies
         List<String> trainConsist = new ArrayList<>();
 
-        // Display initial consist information
         System.out.println("Train initialized successfully...");
-
-        // Display the initial bogie count using size()
         System.out.println("Initial Bogie Count : " + trainConsist.size());
-
-        // Print the current state of the train
         System.out.println("Current Train Consist : " + trainConsist);
-
-        // Blank line for formatting
         System.out.println();
-
-        // Program continues
         System.out.println("System ready for operations...");
 
 
@@ -45,15 +37,38 @@ public class TrainApp {
         System.out.println("\n--- UC2: Add Passenger Bogies to Train ---");
         System.out.println("\nAdding Bogies...");
 
-        // Add passenger bogies to the list
         trainConsist.add("Sleeper");
         trainConsist.add("AC Chair");
         trainConsist.add("First Class");
 
-        // Display the updated bogie count
         System.out.println("Updated Bogie Count : " + trainConsist.size());
-
-        // Print the updated state of the train
         System.out.println("Current Train Consist : " + trainConsist);
+
+
+        // ==========================================
+        // USE CASE 3: TRACK UNIQUE BOGIE IDs
+        // ==========================================
+
+        System.out.println("\n--- UC3: Track Unique Bogie IDs ---");
+
+        // Create a Set to store unique bogie IDs
+        Set<String> bogieIds = new HashSet<>();
+
+        // Add initial unique IDs
+        bogieIds.add("BOG-101");
+        bogieIds.add("BOG-102");
+        bogieIds.add("BOG-103");
+
+        System.out.println("\nBogie IDs Tracked :");
+        System.out.println(bogieIds);
+
+        System.out.println("\nNote:");
+        System.out.println("Attempted to add duplicate 'BOG-101'.");
+
+        // Attempting to add a duplicate
+        bogieIds.add("BOG-101");
+
+        // Displaying the size to prove the duplicate was ignored
+        System.out.println("\nSet prevents duplicates, size is: " + bogieIds.size());
     }
 }
