@@ -4,7 +4,9 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
-import java.util.LinkedHashSet; // New import for UC5
+import java.util.LinkedHashSet;
+import java.util.Map;       // New import for UC6
+import java.util.HashMap;   // New import for UC6
 
 /**
  * MAIN CLASS - TrainApp
@@ -14,6 +16,7 @@ import java.util.LinkedHashSet; // New import for UC5
  * Use Case 3: Track Unique Bogie IDs (Set - HashSet)
  * Use Case 4: Maintain Ordered Bogie IDs (TreeSet & SortedSet)
  * Use Case 5: Preserve Insertion Order of Bogies (LinkedHashSet)
+ * Use Case 6: Map Bogie to Capacity (HashMap)
  */
 public class TrainApp {
 
@@ -101,24 +104,44 @@ public class TrainApp {
         System.out.println("\n--- UC5: Preserve Insertion Order of Bogies ---");
         System.out.println("Adding bogies (Engine, Sleeper, AC Chair, Cargo)...");
 
-        // Create a LinkedHashSet to maintain insertion order
         Set<String> linkedBogies = new LinkedHashSet<>();
 
-        // Add bogies in a specific physical order
         linkedBogies.add("Engine");
         linkedBogies.add("Sleeper");
         linkedBogies.add("AC Chair");
         linkedBogies.add("Cargo");
 
-        // Display the consist - notice how Engine stays first!
         System.out.println("\nTrain Consist (Insertion Order) :");
         System.out.println(linkedBogies);
 
         System.out.println("\nNote: Attempted to add duplicate Engine. Order remains unchanged.");
 
-        // Attempting to add a duplicate to prove it's rejected
         linkedBogies.add("Engine");
 
         System.out.println("\nAll items processed in order.");
+
+
+        // ==========================================
+        // USE CASE 6: MAP BOGIE TO CAPACITY
+        // ==========================================
+
+        System.out.println("\n--- UC6: Map Bogie to Capacity (HashMap) ---");
+
+        // 1. Create a HashMap to map String (Bogie Type) to Integer (Capacity)
+        Map<String, Integer> bogieCapacities = new HashMap<>();
+
+        // 2. Map capacities to corresponding bogies using put()
+        bogieCapacities.put("Sleeper", 72);
+        bogieCapacities.put("AC Chair", 54);
+        bogieCapacities.put("Cargo", 120);
+
+        System.out.println("\nBogie Capacities (HashMap):");
+
+        // 3. Iterate through the map using entrySet() to print key-value pairs
+        for (Map.Entry<String, Integer> entry : bogieCapacities.entrySet()) {
+            System.out.println(entry.getKey() + " = " + entry.getValue());
+        }
+
+        System.out.println("\nUC6 bogie capacity mapping completed...");
     }
 }
